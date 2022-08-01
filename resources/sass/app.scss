@@ -1,0 +1,26 @@
+// Fonts
+@import url("https://fonts.googleapis.com/css?family=Nunito");
+
+// Variables
+@import "variables";
+
+// Bootstrap
+@import "~bootstrap/scss/bootstrap";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    background: url("https://p.favim.com/orig/2019/02/21/pixels-gif-pink-Favim.com-6933584.gif")
+        no-repeat;
+    object-fit: cover;
+    background-size: cover;
+    min-height: 100vh;
+    width: auto;
+    backdrop-filter: blur(10px);
+}
+
+// nav .navbar-nav li a {
+//     color: rgb(255, 219, 219) !important;
+// }
