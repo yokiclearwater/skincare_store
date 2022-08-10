@@ -9,8 +9,9 @@
                 </h1>
             </div>
         @endif
-        <div class="flex flex-row">
-        <a href="/skincare" class="btn btn-outline-dark">Back</a>
+        <div class="flex flex-row justify-between">
+            <a href="/skincare" class="btn btn-outline-dark btn-lg">Back</a>
+            <a href="{{ route('cart.order_history') }}" class="btn btn-success btn-lg">Order History</a>
         </div>
         @foreach ($carts as $cart)
             <div class="bg-rose-400 p-2 flex flex-row flex-wrap gap-3 text-white text-2xl rounded justify-between">
@@ -44,8 +45,9 @@
                 </form>
             </div>
         @endforeach
-        <span class="text-3xl text-black font-bold border-b-4 border-rose-700 p-2">Total Price : $ {{ $total_price }}</span>
-       
-        <a href="{{route('cart.checkout')}}" class="btn btn-success btn-lg bg-green-500 text-4xl font-bold">Checkout</a>
+        <span class="text-3xl text-black font-bold border-b-4 border-rose-700 p-2">Total Price : $
+            {{ $total_price }}</span>
+
+        <a href="{{ route('cart.checkout') }}" class="btn btn-success btn-lg bg-green-500 text-4xl font-bold">Checkout</a>
     </div>
 @endsection

@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('home');
 })->middleware('auth');
 
 Auth::routes();
@@ -30,10 +30,10 @@ Route::get('/skincare', [HomeController::class, 'SkinCare']);
 Route::get('/about', [HomeController::class, 'About']);
 Route::get('/contact', [HomeController::class, 'Contact']);
 
-Route::get('search', [ProductController::class, 'Search']);
-Route::get('detail/{id}', [CartController::class, 'Detail']);
+Route::get('search', [ProductController::class, 'Search'])->middleware('auth');
+Route::get('detail/{id}', [CartController::class, 'Detail'])->name('cart.detail')->middleware('auth');
 
-Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+Route::get('/cart', [CartController::class, 'index'])->name('cart.index')->middleware('auth');
 Route::post('/cart/{id}', [CartController::class, 'store'])->name('cart.store')->middleware('auth');
 Route::get('/cart/checkout', [CartController::class, 'checkout'])->name('cart.checkout')->middleware('auth');
 Route::post('/cart/{id}/update', [CartController::class, 'update'])->name('cart.update')->middleware('auth');

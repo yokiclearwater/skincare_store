@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Skincare Store</title>
 
     <!-- Scripts -->
     {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
@@ -20,10 +20,6 @@
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.css'
         integrity='sha512-9nqhm3FWfB00id4NJpxK/wV1g9P2QfSsEPhSSpT+6qrESP6mpYbTfpC+Jvwe2XY27K5mLwwrqYuzqMGK5yC9/Q=='
         crossorigin='anonymous' />
-
-    <!-- Styles -->
-  
-    {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
 </head>
 
 <body>
@@ -53,14 +49,21 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/contact">Contact</a>
-                        </li>   
+                        </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/cart">Cart(0)</a>
-                        </li>   
+                            <a class="nav-link" href="/cart">Cart (
+                                @if (Auth::user())
+                                    {{ Auth::user()->carts->whereNull('order_num')->count() }}
+                                @else
+                                    0
+                                @endif
+                                )
+                            </a>
+                        </li>
                     </ul>
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
-                  
+
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
@@ -87,10 +90,11 @@
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
-                                    <a class="dropdown-item" href="products">
-                                        Products
-                                    </a>
-
+                                    @if (Auth::user()->role_as === 1)
+                                        <a class="dropdown-item" href="products">
+                                            Products
+                                        </a>
+                                    @endif
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
