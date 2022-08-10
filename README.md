@@ -1,8 +1,8 @@
-#Skincare Store
+# Skincare Store
 
 -- This is a skincare store built with Laravel 9, Bootstrap, TailwindCss
 
-#Installation
+# Installation
 
 -- clone this repository
 -- composer install or composer update
@@ -11,7 +11,7 @@
 -- migrate your database
 -- then seed your database with (php artisan db:seed)
 
-#Usage
+# Usage
 
 Admin Panel Can Be Access only with Admin Account
 -- Change `role_as` to 1 to give admin permissions to user account
